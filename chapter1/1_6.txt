@@ -1,0 +1,4 @@
+The program is not legal.
+The reason is that ; indicates end of the statement.
+And the << operator requires both left and right operand.
+So simply remove ; inside the statement.
