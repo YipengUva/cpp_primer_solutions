@@ -4,17 +4,21 @@
 
 using namespace std;
 
+struct Sales_data{
+    std::string bookNo;
+    unsigned units_sold = 0;
+    double revenue = 0.0;
+};
+
 int main()
 {
-    int *ptr = nullptr;
+    typedef double wages;
+    wages yipeng = 1000.0;
+    cout << yipeng << endl;
 
-    int val = 10;
-    ptr = &val;
-    cout << ptr << endl;
+    using SI = Sales_item;
+    SI item;
 
-    *ptr = 1000;
-    cout << val << endl;
-    cout << *ptr << endl;
 
     return 0;
 }
