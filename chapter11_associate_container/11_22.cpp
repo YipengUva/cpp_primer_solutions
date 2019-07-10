@@ -23,17 +23,6 @@ int main()
         cout << ele.first << ": ";
         print(ele.second);
     }
-    cout << endl;
-
-    auto wc = word_numbers.find("song");
-    cout << wc->first << ": ";
-    print(wc->second);
-
-    map<string, vector<int> >::iterator wc2 = word_numbers.find("yipeng");
-    cout << wc2->first << ": ";
-    print(wc2->second);
-
-
 
     return 0;
 }
