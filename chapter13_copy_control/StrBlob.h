@@ -16,6 +16,22 @@ public:
     StrBlob();
     StrBlob(std::initializer_list<std::string> il);
 
+    // copy constructor
+    StrBlob(const StrBlob &strblob)
+        : data(std::make_shared<std::vector<std::string>>( *strblob.data ) )
+    {
+    }
+
+    // assigment operator
+    StrBlob& operator=(const StrBlob &strblob){
+        data = std::make_shared<std::vector<std::string>>( *strblob.data );
+
+        return *this;
+    }
+
+    // get function
+    std::shared_ptr<std::vector<std::string>> get() { return data; }
+
     // size, empty member functions
     size_type size() const { return data->size(); }
     bool empty() const { return data->empty(); }

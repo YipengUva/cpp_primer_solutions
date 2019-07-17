@@ -1,31 +1,32 @@
 #include <string>
 #include <iostream>
-#include <memory>
 
 using namespace std;
 
 class HasPtr {
 public:
     HasPtr(const std::string &s = std::string()):
-    ps( make_shared<string>(s) ), i(0) { }
-    shared_ptr<string> get() const { return this->ps; }
+    ps(new std::string(s)), i(0) { }
+    string* get() const { return this->ps; }
 
     // copy constructor
     HasPtr(const HasPtr &hasptr)
-        : ps(hasptr.ps), i(hasptr.i)
+        : ps(new string(*hasptr.get())), i(0)
     {
     }
 
+    ~HasPtr() { delete ps; }
+
     // copy assignment
     HasPtr& operator=(const HasPtr &hasptr){
-        ps = hasptr.ps;
-        i = hasptr.i;
+        ps = new string(*hasptr.get());
+        i = 0;
 
         return *this;
     }
 
 private:
-    shared_ptr<string> ps;
+    std::string *ps;
     int i;
 };
 
