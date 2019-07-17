@@ -1,19 +1,10 @@
 #include <string>
 #include <iostream>
 #include <memory>
-#include <vector>
-#include <algorithm>
 
 using namespace std;
 
 class HasPtr {
-    friend inline void swap(HasPtr &lhs, HasPtr &rhs){
-        cout << "swap is executed" << endl;
-        using std::swap;
-        swap(lhs.ps, rhs.ps);
-        swap(lhs.i, rhs.i);
-    }
-
 public:
     HasPtr(const std::string &s = std::string()):
     ps( make_shared<string>(s) ), i(0) { }
@@ -33,16 +24,11 @@ public:
         return *this;
     }
 
-    // < operator
-    bool operator<(const HasPtr &rhs){
-        return ps->size() < rhs.ps->size();
-    }
-
     inline void swap(HasPtr &rhs){
-        cout << "swap is executed" << endl;
         using std::swap;
         swap(ps, rhs.ps);
         swap(i, rhs.i);
+        cout << "swap is executed" << endl;
     }
 
 private:
@@ -53,18 +39,12 @@ private:
 int main(){
     HasPtr hp1("Yipeng");
     HasPtr hp2("Song");
-    HasPtr hp3("Randomness");
+    cout << hp1.get() << endl;
+    cout << hp2.get() << endl;
 
-    vector<HasPtr> vec_hs = {hp1, hp2, hp3};
-
-    for(auto &ele : vec_hs){
-        cout << *ele.get() << endl;
-    }
-
-    sort(vec_hs.begin(), vec_hs.end());
-    for(auto &ele : vec_hs){
-        cout << *ele.get() << endl;
-    }
+    hp1.swap(hp2);
+    cout << hp1.get() << endl;
+    cout << hp2.get() << endl;
 
     return 0;
 }
