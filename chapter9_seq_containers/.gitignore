@@ -4,4 +4,4 @@ obj/
 *.depend
 *.layout
 Sales_item.h
-
+*.txt
