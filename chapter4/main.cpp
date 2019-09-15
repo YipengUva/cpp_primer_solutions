@@ -7,9 +7,13 @@ using namespace std;
 
 int main()
 {
-    string s = "word";
-    string pl = s + (s[s.size() - 1] == 's' ? "" : "s");
-    cout << pl << endl;
+    string name = "YipengSong";
+    string *p1 = &name;
+
+    cout << p1->size() << endl;
+
+    string *p2 = &name;
+    cout << (*p2).size() << endl;
 
     return 0;
 }

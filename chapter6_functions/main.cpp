@@ -1,40 +1,87 @@
 #include <iostream>
 #include <string>
-#include <vector>
-#include <cassert>
-//#include "chapter6.h"
 
 using namespace std;
 
-int add2(int x, int y)
+class Sales_data
 {
-    return x + y;
+private:
+    /* data */
+public:
+    string bookNo;
+    unsigned units_sold = 0;
+    double revenue = 0.0;
+
+    string isbn() const 
+    {
+        return this->bookNo;
+    }
+
+    Sales_data& combine(const Sales_data&);
+    double avg_price() const;
+
+
+    Sales_data(/* args */);
+    ~Sales_data();
+};
+
+double Sales_data::avg_price() const {
+    if(units_sold)
+        return revenue/units_sold;
+    else
+        return 0;    
 }
 
-int sub2(int x, int y)
+Sales_data& Sales_data::combine(const Sales_data &rhs)
 {
-    return x - y;
+    units_sold += rhs.units_sold;
+    revenue += rhs.revenue;
+    return *this;
 }
 
-int mul2(int x, int y)
+
+ostream &print(ostream&, const Sales_data&);
+istream &read(istream&, Sales_data&);
+
+istream &read(istream &is, Sales_data &item)
 {
-    return x * y;
+    double price = 0;
+    is >> item.bookNo >> item.units_sold >> price;
+    item.revenue = price * item.units_sold;
+    return is;
 }
 
-int div2(int x, int y)
+ostream &print(ostream &os, const Sales_data&item)
 {
-    return x / y;
+    
+
 }
 
-typedef int (*arith_fun)(int, int);
 
-int main() {
-    vector<arith_fun> funs = {add2, sub2, mul2, div2};
 
-    int x = 10, y = 20;
 
-    for(auto fun : funs)
-        cout << fun(x, y) << endl;
+
+
+void swap(int &v1, int&v2)
+{
+    if(v1 == v2){
+        return;
+    }
+    int tmp = v2;
+    v2 = v1;
+    v1 = tmp;
+}
+
+int main()
+{
+    void (*pf)(int &, int &);
+
+    pf = &swap;
+
+    int v1 = 10;
+    int v2 = 100;
+    (*pf)(v1, v2);
+    cout << v1 << " " << v2 << endl;
 
     return 0;
 }
