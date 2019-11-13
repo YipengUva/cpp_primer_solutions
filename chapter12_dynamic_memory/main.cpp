@@ -9,18 +9,11 @@ using namespace std;
 
 int main()
 {
-    int n = 10;
-    allocator<string> alloc;
-    auto const p = alloc.allocate(n);
-    string s;
-    auto q = p;
-    while(cin >> s && q != p + n){
-        alloc.construct(q++, s);
-        cout << s << endl;
-    }
+    shared_ptr<string> p1;
+    shared_ptr<list<int>> p2;
+    shared_ptr<int> p3 = make_shared<int>(42);
+    cout << *p3 << endl;
 
-    while (q != p)
-        alloc.destroy(--q);
 
     return 0;
 }

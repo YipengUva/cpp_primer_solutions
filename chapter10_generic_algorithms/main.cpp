@@ -9,6 +9,7 @@
 using namespace std;
 
 void print(list<string> &);
+void print(vector<int> &);
 
 void elimDups(list<string> &words)
 {
@@ -21,10 +22,17 @@ print(words);
 
 int main()
 {
-    list<string> words = {"yipeng", "song", "yipeng", "song", "Amsterdam"};
-    print(words);
+    vector<int> vec = {12, 23, 19, 42, 89};
+    auto val = accumulate(vec.cbegin(), vec.cend(), 1000);
+    cout << val << endl;
 
-    elimDups(words);
+    vector<string> vec2 = {"test", "yipeng", "song"};
+    auto val2 = accumulate(vec2.cbegin(), vec2.cend(), string(", "));
+    cout << val2 << endl;
+
+    vector<int> vec3 = {0, 0, 0, 0, 0};
+    fill(vec3.begin(), vec3.end(), 100);
+    print(vec3);
 
     return 0;
 }
@@ -36,4 +44,11 @@ void print(list<string> &lst)
         cout << ele << " ";
     }
     cout << endl;
+}
+
+void print(vector<int> &vec)
+{
+    for(auto &ele : vec){
+        cout << ele << " ";
+    }
 }

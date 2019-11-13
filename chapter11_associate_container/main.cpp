@@ -14,6 +14,17 @@ void print(const vector<int> &numbers);
 
 int main()
 {
+    map<string, size_t> word_count;
+    string word;
+    while(cin >> word){
+        ++word_count[word];
+    }
+
+    for(const auto &w : word_count){
+        cout << w.first << " occurs " << w.second << endl;
+    }
+
+    /*
     map<string, vector<int> > word_numbers;
     auto ret = word_numbers.insert({"song", {1, 2, 3} });
     pair<map<string, vector<int> >::iterator, bool> ret2 =
@@ -33,6 +44,7 @@ int main()
     cout << wc2->first << ": ";
     print(wc2->second);
 
+    */
 
 
     return 0;
